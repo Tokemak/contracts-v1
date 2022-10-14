@@ -1,0 +1,41 @@
+title Adding Liquidity
+
+actor Alice
+actor Bob
+actor Carol
+participant USDCPool#dodgerblue
+participant DAIPool#yellow
+participant USDTPool#springgreen
+participant USDC#dodgerblue
+participant DAI#yellow
+participant USDT#springgreen
+
+group #dodgerblue USDC Liquidity Added
+Alice -> USDC: approve(USDCPool, amount)
+Alice ->USDCPool: deposit(amount)
+activate USDCPool
+USDCPool ->USDC: transferFrom(Alice, Manager, amount)
+USDCPool --> Alice:
+deactivate USDCPool
+end
+
+group #yellow DAI Liquidity Added
+Bob -> DAI: approve(DAIPool, amount)
+Bob ->DAIPool: deposit(amount)
+activate DAIPool
+DAIPool ->DAI: transferFrom(Bob, Manager, amount)
+DAIPool --> Bob:
+deactivate DAIPool
+end
+
+group #springgreen USDT Liquidity Added
+Carol -> USDT: approve(DAIPool, amount)
+Carol ->USDTPool: deposit(amount)
+activate USDTPool
+USDTPool ->USDT: transferFrom(Bob, Manager, amount)
+USDTPool --> Carol:
+deactivate USDTPool
+end
+
+a
+

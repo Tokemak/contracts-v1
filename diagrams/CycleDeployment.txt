@@ -1,0 +1,73 @@
+title Cycle Deployment and Rollover
+
+
+participant USDCPool#dodgerblue
+participant DAIPool#yellow
+participant USDTPool#springgreen
+participant USDC#dodgerblue
+participant DAI#yellow
+participant USDT#springgreen
+participant EOA#red
+participant Manager(proxy)#Chartreuse
+participant UniswapController
+participant BalancerController
+participant 0xController
+
+# Give permission to Manager to move funds
+group Allow Manager to move funds
+USDCPool -> USDC: approve(Manager, max)
+DAIPool -> DAI: approve(Manager, max)
+USDTPool -> USDT: approve(Manager, max)
+end
+
+abox over Manager(proxy)#Chartreuse: Cycle Unlocks
+activate Manager(proxy) #Chartreuse
+
+loop #gray number of executions for complete cycle deployment
+EOA ->Manager(proxy): execute()
+activate Manager(proxy)
+
+# Pull funds for deployment
+group #dodgerblue Acquire Funds:
+Manager(proxy) -> USDC: transferFrom(USDCPool, Manager, amount)
+Manager(proxy) -> DAI: transferFrom(DAIPool, Manager, amount)
+Manager(proxy) -> USDT: transferFrom(USDTPool, Manager, amount)
+end
+
+#Deploy funds
+group #Chartreuse Deploy Funds
+Manager(proxy) -> UniswapController: delegateCall(data)
+activate UniswapController
+UniswapController -> ]: deploy() || withdraw()
+UniswapController --> Manager(proxy):
+deactivate UniswapController
+
+Manager(proxy) -> BalancerController: delegateCall(data)
+activate BalancerController
+BalancerController -> ]: deploy() || withdraw()
+BalancerController -->Manager(proxy):
+deactivate BalancerController
+
+Manager(proxy) -> 0xController: delegateCall(data)
+activate 0xController
+0xController ->]: deploy() || withdraw()
+0xController -->Manager(proxy):
+deactivate 0xController
+end
+
+#Withdraw funds
+group #dodgerblue Remove Funds:
+Manager(proxy) -> USDC: transfer(USDCPool, amount)
+Manager(proxy) -> DAI: transfer(DAIPool, amount)
+Manager(proxy) -> USDT: transfer(USDTPool, amount)
+end
+
+Manager(proxy) -->EOA:
+deactivate Manager(proxy)
+end
+
+abox over Manager(proxy)#Chartreuse: Cycle Deploy Complete
+deactivate Manager(proxy)
+
+
+

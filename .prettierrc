@@ -1,0 +1,24 @@
+{
+    "tabWidth": 4,
+    "printWidth": 120,
+    "bracketSpacing": false,
+    "explicitTypes": "preserve",
+    "overrides": [
+        {
+            "files": "*.sol",
+            "options": {
+                "printWidth": 120,
+                "tabWidth": 4,
+                "useTabs": false,
+                "singleQuote": false,
+                "explicitTypes": "always"
+            }
+        },
+        {
+            "files": "*.md",
+            "options": {
+                "semi": false
+            }
+        }
+    ]
+}

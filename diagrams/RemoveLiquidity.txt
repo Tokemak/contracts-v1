@@ -1,0 +1,40 @@
+title Removing Liquidity
+
+actor Alice
+actor Bob
+actor Carol
+participant USDCPool#dodgerblue
+participant DAIPool#yellow
+participant USDTPool#springgreen
+participant USDC#dodgerblue
+participant DAI#yellow
+participant USDT#springgreen
+
+group #dodgerblue USDC Liquidity
+Alice ->USDCPool: withdraw(amount)
+activate USDCPool
+USDCPool -> USDC: transfer(amount)
+USDCPool -->Alice:
+deactivate USDCPool
+end
+
+group #yellow DAI Liquidity
+Bob ->DAIPool: withdraw(amount)
+activate DAIPool
+DAIPool -> DAI: transfer(amount)
+DAIPool -->Bob:
+deactivate DAIPool
+end
+
+group #springgreen USDT Liquidity
+Carol ->USDTPool: withdraw(amount)
+activate USDTPool
+USDTPool -> USDT: transfer(amount)
+USDTPool -->Carol:
+deactivate USDTPool
+end
+
+
+
+
+
