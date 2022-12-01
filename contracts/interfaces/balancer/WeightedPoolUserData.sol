@@ -21,17 +21,17 @@ pragma solidity >=0.6.11 <=0.6.12;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 library WeightedPoolUserData {
-    enum JoinKind {
-        INIT,
-        EXACT_TOKENS_IN_FOR_BPT_OUT,
-        TOKEN_IN_FOR_EXACT_BPT_OUT,
-        ALL_TOKENS_IN_FOR_EXACT_BPT_OUT,
-        ADD_TOKEN
-    }
-    enum ExitKind {
-        EXACT_BPT_IN_FOR_ONE_TOKEN_OUT,
-        EXACT_BPT_IN_FOR_TOKENS_OUT,
-        BPT_IN_FOR_EXACT_TOKENS_OUT,
-        REMOVE_TOKEN
-    }
+	enum JoinKind {
+		INIT,
+		EXACT_TOKENS_IN_FOR_BPT_OUT,
+		TOKEN_IN_FOR_EXACT_BPT_OUT,
+		ALL_TOKENS_IN_FOR_EXACT_BPT_OUT,
+		ADD_TOKEN
+	}
+	enum ExitKind {
+		EXACT_BPT_IN_FOR_ONE_TOKEN_OUT,
+		EXACT_BPT_IN_FOR_TOKENS_OUT,
+		BPT_IN_FOR_EXACT_TOKENS_OUT,
+		REMOVE_TOKEN
+	}
 }

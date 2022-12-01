@@ -1,0 +1,56 @@
+# Title for the gitleaks configuration file.
+title = "Gitleaks Overrides"
+
+# Extend the base (this) configuration. When you extend a configuration
+# the base rules take precendence over the extended rules. I.e, if there are
+# duplicate rules in both the base configuration and the extended configuration
+# the base rules will override the extended rules.
+# Another thing to know with extending configurations is you can chain together
+# multiple configuration files to a depth of 2. Allowlist arrays are appended
+# and can contain duplicates.
+# useDefault and path can NOT be used at the same time. Choose one.
+[extend]
+# useDefault will extend the base configuration with the default gitleaks config:
+# https://github.com/zricethezav/gitleaks/blob/master/config/gitleaks.toml
+useDefault = true
+# or you can supply a path to a configuration. Path is relative to where gitleaks
+# was invoked, not the location of the base config.
+
+# [rules.allowlist]
+# description = "ignore tokens"
+# paths = [
+#   #"contracts/*/*.sol"
+# ]
+# regexes = [
+# 	#"0x94671A3ceE8C7A12Ea72602978D1Bb84E920eFB2",
+#   #"0x4e3FBD56CD56c3e72c1403e103b45Db9da5B9D2B",
+# ]
+
+# [rules.allowlist]
+# description = "ignore token lists in setups"
+# paths = [
+# 	"test-unit/VoteTracker.test.ts",
+# ]
+# regexes = [
+# 	"^0x[a-fA-F0-9]{40}$" # any address
+# ]
+
+[allowList]
+description = "Whitelist overrides to filter false positives"
+paths = [
+	".env",
+	"dist/*",
+	"utils/config.ts",
+	"scripts/voting/vote_reactor_setup_core3.ts",
+	"test-unit/VoteTracker.test.ts"
+]
+regexes = [
+	"0xEd279fDD11cA84bEef15AF5D39BB4d4bEE23F0cA", # lp
+	"0x94671A3ceE8C7A12Ea72602978D1Bb84E920eFB2", # tFRAX?
+	# "0x4e3FBD56CD56c3e72c1403e103b45Db9da5B9D2B", # convext_token
+	# "0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490", # curve_3_pool_lp_token
+	"0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F", # snx
+	# "0xdbdb4d16eda451d0503b854cf79d55697f90c8df", #alcx
+	# "0xcA3d75aC011BF5aD07a98d02f18225F9bD9A6BDF", # curve_3_pool_v2_lp_token
+	"0x0b38210ea11411557c13457D4dA7dC6ea731B88a", # api3 in votetracker?
+]

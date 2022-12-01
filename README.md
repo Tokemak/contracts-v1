@@ -9,7 +9,7 @@
     -   Implementation - `0x59170D9d1d3Db8AC3539c6705fB38c735aF9F4c9`
     -   Admin - `0x0882aB38C4Ff4A5A9FE175Bc5147018B8eE7dA64`
 -   Staking - `0x96F98Ed74639689C3A11daf38ef86E59F43417D3`
-    -   Implementation - `0xEf8670da2D381A523953e157cf52b704b94a955b`
+    -   Implementation - `0xF82337cF52979411b769176C156DAa88E2b54F63`
     -   Admin - `0xc89F742452F534EcE603C7B62dF76102AAcF00Df`
 -   Rewards Contract - `0x79dD22579112d8a5F7347c5ED7E609e60da713C5`
 -   Coordinator Address (Multisig) - `0x90b6C61B102eA260131aB48377E143D6EB3A9d4B`
@@ -31,6 +31,11 @@
     -   Implementation - `0x7cdBbD9d6EB284F7F2A45236b50eEe9c94e96d06`
 -   Delegate Function - `0x3bc59A43d82C1acF3a597652eaDD3a02082D3671`
     -   Implementation - `0xC8e257930D4f0A455A09Bf8D189ed588d344da8a`
+-   AccToke - `0xA374A62DdBd21e3d5716cB04821CB710897c0972`
+    -   Implementation - `0x65E1F22B8b17371E6ea93bcc3D20D5532203506e`
+-   WETH Rewards - `0x086B9734D33783Bbe4fBc8249DF4C686aAe27054`
+-   WETH RewardsHash - `0x3cCE05568008916d739479958f7a1AF5f67661DD`
+    -   Owner - `0x288ad690764c99fd085579573d32ee63fe41ae30`
 
 ### Reactors
 
@@ -85,20 +90,19 @@ If not otherwise specified
 
 ### Rari
 
--   Pool 26 - `0xC202Be8EbaF758A7dc8f227e6De88bE5D28c69dd`
-    -   Owner - `0x90b6C61B102eA260131aB48377E143D6EB3A9d4B` (Dev Coordinator)
+-   ~~Pool 26 - `0xC202Be8EbaF758A7dc8f227e6De88bE5D28c69dd`~~ (Deprecated)
 
-#### Individual Tokens
+#### ~~Individual Tokens~~
 
--   ftWETH - `0xEaC275b19d55cC2b79783C894FbaC218c0f6D8d5`
--   ftUSDC - `0xA37811563A85634cb7d43Db8f427d40B2f1541dC`
--   ftTOKE - `0xb21Ebf79bbB522F3f61D1BA0Dc12A2e6c7129AE8`
--   ftUniLP - `0xDb55E51d33157d3213Ce57f20C36fA052F25D4ba`
--   ftSushiLP - `0x714e6C8361E13C4C7db5373B85DE3835Ec92F09f`
+-   ~~ftWETH - `0xEaC275b19d55cC2b79783C894FbaC218c0f6D8d5`~~ (Deprecated)
+-   ~~ftUSDC - `0xA37811563A85634cb7d43Db8f427d40B2f1541dC`~~ (Deprecated)
+-   ~~ftTOKE - `0xb21Ebf79bbB522F3f61D1BA0Dc12A2e6c7129AE8`~~ (Deprecated)
+-   ~~ftUniLP - `0xDb55E51d33157d3213Ce57f20C36fA052F25D4ba`~~ (Deprecated)
+-   ~~ftSushiLP - `0x714e6C8361E13C4C7db5373B85DE3835Ec92F09f`~~ (Deprecated)
 
 ### Sushi
 
--   Onsen Toke Rewarder - `0xc56df8B6Dad2555fe42961F2DB0399f4CD3AbCda`
+-   ~~Onsen Toke Rewarder - `0xc56df8B6Dad2555fe42961F2DB0399f4CD3AbCda`~~ (Deprecated)
 
 ### Curve Pools
 
@@ -217,9 +221,9 @@ Additional labels for pre-release and build metadata are available as extensions
 Given the lower number of expected updates in the short-term, incrementing the package will be a manual process. You should the standard npm commands for incrementing the package versioning and pushing the changes with your branch. Those commands are:
 
 ```
-yarn version --major
-yarn version --minor
-yarn version --patch
+npm version --major
+npm version --minor
+npm version --patch
 ```
 
 See the following links for more details
@@ -235,9 +239,11 @@ As always, you'll first want to install any dependencies
 npm install
 ```
 
-Next, you'll need to create an `.env` file in the root of the project. See the `.env.example`
+Next, you'll need to create an `.env` file in the root of the project: see `env.sample` file for a list of settings that it should contain
 
 ** Note: Generate your own Alchemy key to use and fill it in **
+
+\*\* Note2: You will need `gitleaks` in order to be able to check in changes. Installation instructions can be found here: https://github.com/zricethezav/gitleaks
 
 ## Package publishing
 
@@ -302,6 +308,10 @@ $ npm login --scope=@tokemak --registry=https://npm.pkg.github.com
 -   Address Registry - `0x93eC546fdcae65B10f2a409115612b2A21f53919`
     -   Implementation - `0x545C500171479beEa6145B291Ab9884070F60611`
 -   Dev Coordinator - `0x52967DA31f243Eb9F35f151643Ab9D30e445B1C6`
+-   AccToke - `0x3E3858F5b81B7d4AcD749385D90d32e809922059`
+    -   Implementation - `0x95c853f124bf414b33f3be95e9d133adc96a1d9c`
+-   WETH Rewards - `0x13f7072B65c17b3D9C6Dd8d688529cC7bB87f5E8`
+-   WETH RewardsHash - `0x14fBDc44a43b6D242752b8Bf27c3752cd43eB1b4`
 
 ### Reactors
 
@@ -395,8 +405,8 @@ $ npm login --scope=@tokemak --registry=https://npm.pkg.github.com
     -   Admin - `0x31535A105a23731a0eF3ff8C19C6389F98bB796c`
 -   Cycle Rollover Tracker - `0xE37013f2288F8a80DD81341d8F5C70099F245f4b`
 
-# Rinkeby Testnet
+# ~~Rinkeby Testnet~~
 
-## Important Addresses
+## ~~Important Addresses~~
 
--   WETH Pool Address - `0x730c53a493cd8c40617B74b0a046aDE30F1F3A7F`
+-   ~~WETH Pool Address - `0x730c53a493cd8c40617B74b0a046aDE30F1F3A7F`~~

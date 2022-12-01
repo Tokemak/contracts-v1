@@ -6,9 +6,15 @@
       "esModuleInterop": true,
       "outDir": "dist",
       "typeRoots": ["./node_modules/@types", "./typings"],
-      "resolveJsonModule": true
+      "resolveJsonModule": true,
+      "baseUrl": "./",
+      "paths": {
+        "utils": ["utils"],
+        "utils/*": ["utils/*"],
+      },
+      "moduleResolution": "Node"
     },
-    "include": ["./scripts", "./test-unit", "./test-integration", "./typechain"],
-    "files": ["./hardhat.config.ts"]
+    "include": ["./utils", "./scripts", "./test-unit", "./test-integration", "./typechain"],
+    "files": ["./hardhat.config.ts"],
   }
-  
+

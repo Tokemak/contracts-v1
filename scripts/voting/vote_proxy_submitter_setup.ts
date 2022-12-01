@@ -1,20 +1,20 @@
-import {ethers, artifacts} from "hardhat";
+import { ethers, artifacts } from "hardhat";
 import dotenv from "dotenv";
-import {VoteTracker} from "../../typechain";
+import { VoteTracker } from "../../typechain";
 
 dotenv.config();
 
 export interface VoteProxySubmitterSetup {
-    voteTracker: string;
-    addresses: string[];
+	voteTracker: string;
+	addresses: string[];
 }
 
 export const runVoteProxySubmitterSetup = async (input: VoteProxySubmitterSetup): Promise<void> => {
-    const voteArtifact = artifacts.require("VoteTracker");
+	const voteArtifact = artifacts.require("VoteTracker");
 
-    const [deployer] = await ethers.getSigners();
-    const voteTracker = (await ethers.getContractAt(voteArtifact.abi, input.voteTracker)) as unknown as VoteTracker;
+	const [deployer] = await ethers.getSigners();
+	const voteTracker = (await ethers.getContractAt(voteArtifact.abi, input.voteTracker)) as unknown as VoteTracker;
 
-    const yes = await voteTracker.connect(deployer).setProxySubmitters(input.addresses, true);
-    await yes.wait();
+	const yes = await voteTracker.connect(deployer).setProxySubmitters(input.addresses, true);
+	await yes.wait();
 };
