@@ -8,21 +8,25 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 import "../interfaces/IRewardHash.sol";
 
 contract RewardHash is IRewardHash, Ownable {
-    using SafeMath for uint256;
+	using SafeMath for uint256;
 
-    mapping(uint256 => CycleHashTuple) public override cycleHashes;
-    uint256 public latestCycleIndex;
+	mapping(uint256 => CycleHashTuple) public override cycleHashes;
+	uint256 public latestCycleIndex;
 
-    function setCycleHashes(uint256 index, string calldata latestClaimableIpfsHash, string calldata cycleIpfsHash) external override onlyOwner {
-        require(bytes(latestClaimableIpfsHash).length > 0, "Invalid latestClaimableIpfsHash");
-        require(bytes(cycleIpfsHash).length > 0, "Invalid cycleIpfsHash");
+	function setCycleHashes(
+		uint256 index,
+		string calldata latestClaimableIpfsHash,
+		string calldata cycleIpfsHash
+	) external override onlyOwner {
+		require(bytes(latestClaimableIpfsHash).length > 0, "Invalid latestClaimableIpfsHash");
+		require(bytes(cycleIpfsHash).length > 0, "Invalid cycleIpfsHash");
 
-        cycleHashes[index] = CycleHashTuple(latestClaimableIpfsHash, cycleIpfsHash);
+		cycleHashes[index] = CycleHashTuple(latestClaimableIpfsHash, cycleIpfsHash);
 
-        if (index >= latestCycleIndex) {
-            latestCycleIndex = index;
-        }
+		if (index >= latestCycleIndex) {
+			latestCycleIndex = index;
+		}
 
-        emit CycleHashAdded(index, latestClaimableIpfsHash, cycleIpfsHash);
-    }
+		emit CycleHashAdded(index, latestClaimableIpfsHash, cycleIpfsHash);
+	}
 }

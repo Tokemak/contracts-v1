@@ -1,17 +1,16 @@
 {
     "tabWidth": 4,
+    "useTabs": true,
     "printWidth": 120,
-    "bracketSpacing": false,
-    "explicitTypes": "preserve",
+    "bracketSpacing": true,
     "overrides": [
         {
             "files": "*.sol",
             "options": {
                 "printWidth": 120,
                 "tabWidth": 4,
-                "useTabs": false,
-                "singleQuote": false,
-                "explicitTypes": "always"
+                "useTabs": true,
+                "singleQuote": false
             }
         },
         {

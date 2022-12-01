@@ -6,6 +6,6 @@ import "../../fxPortal/IFxStateSender.sol";
 
 /// @notice Configuration entity for sending events to Governance layer
 struct Destinations {
-    IFxStateSender fxStateSender;
-    address destinationOnL2;
+	IFxStateSender fxStateSender;
+	address destinationOnL2;
 }

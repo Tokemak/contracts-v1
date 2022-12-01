@@ -23,5 +23,5 @@ pragma solidity >=0.6.11 <=0.6.12;
  * This concept is unrelated to a Pool's Asset Managers.
  */
 interface IAsset {
-    // solhint-disable-previous-line no-empty-blocks
+	// solhint-disable-previous-line no-empty-blocks
 }

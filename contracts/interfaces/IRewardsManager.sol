@@ -9,17 +9,16 @@ pragma abicoder v2;
  *  Any off-chain process should use this as its source of truth for configuration
  */
 interface IRewardsManager {
+	event ExcludePoolsRegistered(address[] pools);
+	event ExcludePoolsUnRegistered(address[] pools);
 
-    event ExcludePoolsRegistered(address[] pools);
-    event ExcludePoolsUnRegistered(address[] pools);
+	/// @notice Register the pools to exclude from the reward calculation
+	function registerExcludePools(address[] calldata pools) external;
 
-    /// @notice Register the pools to exclude from the reward calculation
-    function registerExcludePools(address[] calldata pools) external;
-    
-     /// @notice Unregister the pools to exclude from the reward calculation
-    function unregisterExcludePools(address[] calldata pools) external;
+	/// @notice Unregister the pools to exclude from the reward calculation
+	function unregisterExcludePools(address[] calldata pools) external;
 
-    /// @notice Get the pools to exclude from the reward calculation
-    /// @return pools
-    function getExcludePools() external view returns (address[] memory pools);
-}   
+	/// @notice Get the pools to exclude from the reward calculation
+	/// @return pools
+	function getExcludePools() external view returns (address[] memory pools);
+}

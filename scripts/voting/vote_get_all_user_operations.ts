@@ -10,8 +10,8 @@
 // const abi = artifact.abi;
 
 // const run = async () => {
-//   const VOTE_CONTRACT = "0x63368f34B84C697d9f629F33B5CAdc22cb00510E";
-//   const BALANCE_CONTRACT = "0xBC822318284aD00cDc0aD7610d510C20431e8309";
+//   const VOTE_CONTRACT = getContractAddress(Environment.MAINNET, Contract.VOTE_TRACKER_CORE);
+//   const BALANCE_CONTRACT = getContractAddress(Environment.MAINNET, Contract.BALANCE_TRACKER);
 
 //   const voteTrackerArtifact = artifacts.require("VoteTracker");
 //   const balanceTrackerArtifact = artifacts.require("BalanceTracker");

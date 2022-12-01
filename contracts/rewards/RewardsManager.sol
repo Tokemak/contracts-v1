@@ -5,43 +5,42 @@ pragma abicoder v2;
 
 import "../interfaces/IRewardsManager.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
-import {OwnableUpgradeable as Ownable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {EnumerableSetUpgradeable as EnumerableSet} from "@openzeppelin/contracts-upgradeable/utils/EnumerableSetUpgradeable.sol";
+import { OwnableUpgradeable as Ownable } from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import { EnumerableSetUpgradeable as EnumerableSet } from "@openzeppelin/contracts-upgradeable/utils/EnumerableSetUpgradeable.sol";
 
 contract RewardsManager is IRewardsManager, Initializable, Ownable {
-    using EnumerableSet for EnumerableSet.AddressSet;
+	using EnumerableSet for EnumerableSet.AddressSet;
 
-    EnumerableSet.AddressSet private excludePools;
+	EnumerableSet.AddressSet private excludePools;
 
-    function initialize() public initializer {
-        __Context_init_unchained();
-        __Ownable_init_unchained();
-    }
+	function initialize() public initializer {
+		__Context_init_unchained();
+		__Ownable_init_unchained();
+	}
 
-    function registerExcludePools(address[] calldata pools) external override onlyOwner {
-        for (uint256 i = 0; i < pools.length; ++i) {
-            require(pools[i] != address(0), "ZERO_ADDRESS");
-            require(excludePools.add(pools[i]), "ADD_FAIL");
-        }
+	function registerExcludePools(address[] calldata pools) external override onlyOwner {
+		for (uint256 i = 0; i < pools.length; ++i) {
+			require(pools[i] != address(0), "ZERO_ADDRESS");
+			require(excludePools.add(pools[i]), "ADD_FAIL");
+		}
 
-        emit ExcludePoolsRegistered(pools);
-    }
+		emit ExcludePoolsRegistered(pools);
+	}
 
-    function unregisterExcludePools(address[] calldata pools) external override onlyOwner {
-        for (uint256 i = 0; i < pools.length; ++i) {
-            require(excludePools.remove(pools[i]), "REMOVE_FAIL");
-        }
+	function unregisterExcludePools(address[] calldata pools) external override onlyOwner {
+		for (uint256 i = 0; i < pools.length; ++i) {
+			require(excludePools.remove(pools[i]), "REMOVE_FAIL");
+		}
 
-        emit ExcludePoolsUnRegistered(pools);
-    }
+		emit ExcludePoolsUnRegistered(pools);
+	}
 
-    function getExcludePools() public view override returns (address[] memory pools) {
-        uint256 length = excludePools.length();
-        pools = new address[](length);
+	function getExcludePools() public view override returns (address[] memory pools) {
+		uint256 length = excludePools.length();
+		pools = new address[](length);
 
-        for (uint256 i = 0; i < length; ++i) {
-            pools[i] = excludePools.at(i);
-        }
-    }
-
+		for (uint256 i = 0; i < length; ++i) {
+			pools[i] = excludePools.at(i);
+		}
+	}
 }
